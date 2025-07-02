@@ -1,8 +1,10 @@
-
-import React from 'react';
+import React, { useState } from 'react';
 import { Trophy, Target, Calendar, CreditCard, Plus, BarChart3, Users as UsersIcon, Eye } from 'lucide-react';
+import ViewPlayerCardsModal from './ViewPlayerCardsModal';
 
 const DashboardOverview = () => {
+  const [isPlayerCardsModalOpen, setIsPlayerCardsModalOpen] = useState(false);
+
   const metrics = [
     { title: 'Total Players', value: '1,247', icon: Trophy, color: 'bg-orange-100 text-orange-600' },
     { title: 'Total Challenges', value: '89', icon: Target, color: 'bg-green-100 text-green-600' },
@@ -42,7 +44,10 @@ const DashboardOverview = () => {
           <h1 className="text-2xl font-bold text-gray-900">Dashboard Overview</h1>
           <p className="text-gray-600">Welcome back here's what's happening today.</p>
         </div>
-        <button className="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition-colors flex items-center space-x-2">
+        <button 
+          onClick={() => setIsPlayerCardsModalOpen(true)}
+          className="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition-colors flex items-center space-x-2"
+        >
           <Eye size={16} />
           <span>View Player Cards</span>
         </button>
@@ -111,6 +116,11 @@ const DashboardOverview = () => {
           </div>
         </div>
       </div>
+
+      <ViewPlayerCardsModal 
+        isOpen={isPlayerCardsModalOpen} 
+        onClose={() => setIsPlayerCardsModalOpen(false)} 
+      />
     </div>
   );
 };

@@ -1,9 +1,10 @@
-
 import React, { useState } from 'react';
 import { Search, Plus, Edit } from 'lucide-react';
+import AddChallengeModal from './AddChallengeModal';
 
 const ChallengeManagement = () => {
   const [searchTerm, setSearchTerm] = useState('');
+  const [isAddChallengeModalOpen, setIsAddChallengeModalOpen] = useState(false);
 
   const challenges = [
     { 
@@ -66,7 +67,7 @@ const ChallengeManagement = () => {
           <p className="text-gray-600">Create and manage photo challenges</p>
         </div>
         <button 
-          onClick={() => console.log('Add Challenge clicked')}
+          onClick={() => setIsAddChallengeModalOpen(true)}
           className="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition-colors flex items-center space-x-2"
         >
           <Plus size={16} />
@@ -154,6 +155,11 @@ const ChallengeManagement = () => {
           </table>
         </div>
       </div>
+
+      <AddChallengeModal 
+        isOpen={isAddChallengeModalOpen} 
+        onClose={() => setIsAddChallengeModalOpen(false)} 
+      />
     </div>
   );
 };

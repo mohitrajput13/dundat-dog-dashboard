@@ -1,9 +1,10 @@
-
 import React, { useState } from 'react';
 import { Search, Plus, Eye, Settings } from 'lucide-react';
+import AddUserModal from './AddUserModal';
 
 const PlayerManagement = () => {
   const [searchTerm, setSearchTerm] = useState('');
+  const [isAddUserModalOpen, setIsAddUserModalOpen] = useState(false);
 
   const players = [
     { name: 'Joe Doe', username: '@joedoe123', bonesEarned: '700 Bones', rewards: 14, challenges: 12, status: 'Active' },
@@ -30,7 +31,7 @@ const PlayerManagement = () => {
           <p className="text-gray-600">Manage all register players</p>
         </div>
         <button 
-          onClick={() => console.log('Add new users clicked')}
+          onClick={() => setIsAddUserModalOpen(true)}
           className="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition-colors flex items-center space-x-2"
         >
           <Plus size={16} />
@@ -111,6 +112,12 @@ const PlayerManagement = () => {
           </table>
         </div>
       </div>
+
+      <AddUserModal 
+        isOpen={isAddUserModalOpen} 
+        onClose={() => setIsAddUserModalOpen(false)}
+        title="Add New Player"
+      />
     </div>
   );
 };
