@@ -1,8 +1,11 @@
 
 import React, { useState } from 'react';
 import { Plus, Calendar, MapPin, Clock, DollarSign, Edit, Trash2 } from 'lucide-react';
+import AddEventModal from './AddEventModal';
 
 const EventManager = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const events = [
     {
       name: 'Summer Music Festival',
@@ -55,7 +58,7 @@ const EventManager = () => {
           <p className="text-gray-600">Create and manage all your events</p>
         </div>
         <button 
-          onClick={() => console.log('Add Event clicked')}
+          onClick={() => setIsModalOpen(true)}
           className="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition-colors flex items-center space-x-2"
         >
           <Plus size={16} />
@@ -74,7 +77,7 @@ const EventManager = () => {
               </span>
               <div className="flex items-center space-x-2">
                 <button 
-                  onClick={() => console.log(`Edit event: ${event.name}`)}
+                  onClick={() => setIsModalOpen(true)}
                   className="text-gray-400 hover:text-orange-600 transition-colors"
                 >
                   <Edit size={16} />
@@ -121,6 +124,11 @@ const EventManager = () => {
           </div>
         ))}
       </div>
+
+      <AddEventModal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)} 
+      />
     </div>
   );
 };

@@ -1,8 +1,11 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Plus } from 'lucide-react';
+import AddRewardModal from './AddRewardModal';
 
 const RewardManagement = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <div className="space-y-6">
       {/* Header */}
@@ -12,7 +15,7 @@ const RewardManagement = () => {
           <p className="text-gray-600">Manage player rewards and incentives</p>
         </div>
         <button 
-          onClick={() => console.log('Add Reward clicked')}
+          onClick={() => setIsModalOpen(true)}
           className="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition-colors flex items-center space-x-2"
         >
           <Plus size={16} />
@@ -29,13 +32,18 @@ const RewardManagement = () => {
           <h3 className="text-lg font-semibold text-gray-900 mb-2">No Rewards Yet</h3>
           <p className="text-gray-600 mb-6">Create your first reward to start incentivizing player engagement.</p>
           <button 
-            onClick={() => console.log('Create First Reward clicked')}
+            onClick={() => setIsModalOpen(true)}
             className="bg-orange-500 text-white px-6 py-3 rounded-lg hover:bg-orange-600 transition-colors"
           >
             Create First Reward
           </button>
         </div>
       </div>
+
+      <AddRewardModal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)} 
+      />
     </div>
   );
 };
