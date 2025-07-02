@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Search, Plus, Edit } from 'lucide-react';
 import AddChallengeModal from './AddChallengeModal';
@@ -59,16 +60,16 @@ const ChallengeManagement = () => {
   };
 
   return (
-    <div className="space-y-6">
-      {/* Header */}
-      <div className="flex justify-between items-center">
-        <div>
+    <div className="space-y-6 min-h-screen">
+      {/* Header - Fixed positioning to prevent overlap */}
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 relative z-10">
+        <div className="flex-1">
           <h1 className="text-2xl font-bold text-gray-900">Challenges Management</h1>
           <p className="text-gray-600">Create and manage photo challenges</p>
         </div>
         <button 
           onClick={() => setIsAddChallengeModalOpen(true)}
-          className="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition-colors flex items-center space-x-2"
+          className="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition-colors flex items-center space-x-2 whitespace-nowrap shadow-md"
         >
           <Plus size={16} />
           <span>Add Challenge</span>
@@ -77,16 +78,16 @@ const ChallengeManagement = () => {
 
       {/* Search and Filter */}
       <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100">
-        <div className="flex items-center justify-between mb-4">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 gap-4">
           <h2 className="text-lg font-semibold text-gray-900">All Challenges ({challenges.length})</h2>
-          <div className="relative">
+          <div className="relative w-full sm:w-auto">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
             <input
               type="text"
               placeholder="Search Challenges..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+              className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent w-full sm:w-64"
             />
           </div>
         </div>

@@ -1,9 +1,11 @@
 
 import React, { useState } from 'react';
 import { Search, Plus, Edit, Eye } from 'lucide-react';
+import AddUserModal from './AddUserModal';
 
 const UserManagement = () => {
   const [searchTerm, setSearchTerm] = useState('');
+  const [isAddUserModalOpen, setIsAddUserModalOpen] = useState(false);
 
   const users = [
     { name: 'Joe Doe', email: 'joedoe123@gmail.com', location: 'New York', status: 'Active', joinDate: '24/4/2024' },
@@ -31,7 +33,7 @@ const UserManagement = () => {
           <p className="text-gray-600">Manage Register business users</p>
         </div>
         <button 
-          onClick={() => console.log('Add new users clicked')}
+          onClick={() => setIsAddUserModalOpen(true)}
           className="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition-colors flex items-center space-x-2"
         >
           <Plus size={16} />
@@ -102,6 +104,11 @@ const UserManagement = () => {
           </table>
         </div>
       </div>
+
+      <AddUserModal 
+        isOpen={isAddUserModalOpen} 
+        onClose={() => setIsAddUserModalOpen(false)} 
+      />
     </div>
   );
 };
