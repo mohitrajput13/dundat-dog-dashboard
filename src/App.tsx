@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { io } from "socket.io-client";
 
-const SERVER_URL = "https://winkdic.com/2025/B2B/server";
+const SERVER_URL = "https://backend-54y5.onrender.com";
 
 export default function App() {
   const [socketConnected, setSocketConnected] = useState(false);
